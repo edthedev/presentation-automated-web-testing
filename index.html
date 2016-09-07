@@ -52,22 +52,79 @@
 
 Presented by Neeru Batura, Alina Banerjee, Edward Delaporte, Michelle Pitcel, and David Riddle
 
----
+???
 
-# About Remark
+# How to use ReMark
 
 Open this file in a browser to see the slide deck. Open it in a text editor to work with the Markdown.
-Pressing C or P does cool stuff.
+Press P to see your presentation notes and a presentation timer.
+Press C to clone a copy for your second monitor.
 Arrow keys to go forward or back a slide.
+Note that both HTML img tags or MarkDown image tags work here, but HTML img tag is easier to style.
 
-- List item 1
-- List item 2
+
+
+---
+# Example Feature File
+
+    Feature: Property Manager uses incorrect password
+        In order to ensure that bad passwords are handled correctly
+        We step through some tests on the test server.
+
+    Scenario: Property Manager uses incorrect password
+        Given the current URL is "PropertyManager/New"
+        When we login
+            | Id       | Value                        |
+            | Email    | property_manager@example.com |
+            | Password | LOGMEINNOW!                  |
+        When we wait 500 milliseconds
+        Then the page body contains "invalid login attempt"  
+        Then we close the browser
 
 ???
 
-Note that both HTML img tags or MarkDown image tags work here, but HTML img tag is easier to style.
+Talking Points
+- Feature description is not used to generate code.
+- Key words are Given / When / Then
+- Given gets us set up to test.
+- When tells testing step.
+- Then verifies an expected result.
+- Data tables are a fast way to specify a lot of field values. 
 
-Some notes...
+---
+
+# Example C# Step File
+
+    public class WebDriver {
+        
+        private string BaseUrl = "http://demo.mypropertypay.com";
+        private IWebDriver driver;
+
+        [Given(@"the current URL is ""(.*)""")]
+        public void GivenTheCurrentURLIs(string p0) {
+            this.driver = new ChromeDriver();
+            this.driver.Url = BaseUrl + p0;
+        }
+    ...
+    }
+
+
+---
+
+# Another example C# step
+
+        [When(@"we login")]
+        public void WhenWeLogin(Table table) {
+            IWebElement body = driver.FindElement(By.TagName("body"));
+            if (body.Text.ContainsNoCase("log off"))
+                driver.FindElement(By.Id("aLogOut")).Click();
+
+            this.fieldValues = table.CreateSet<FieldIdValuePair>();
+            foreach(FieldIdValuePair item in this.fieldValues) {
+                this.driver.FindElement(By.Id(item.Id)).SendKeys(item.Value);
+            }
+            driver.FindElement(By.Id("LoginSubmit")).Click();
+            System.Threading.Thread.Sleep(500);
 
 </textarea>
     <!--<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">-->
