@@ -62,9 +62,21 @@ Press C to clone a copy for your second monitor.
 Arrow keys to go forward or back a slide.
 Note that both HTML img tags or MarkDown image tags work here, but HTML img tag is easier to style.
 
+---
 
+# Why Automate Web Testing?
+
+- It takes the Busey team about three hours to manually verify a Property Pay release.
+- We release updates about every three weeks.
+- The automation runs daily and copies the report output to a network share.
+- Prevent Regression
+
+???
+
+The Property Pay test suite has about 40 features with varying numbers of steps.
 
 ---
+
 # Example Feature File
 
     Feature: Property Manager uses incorrect password
@@ -125,6 +137,15 @@ Talking Points
             }
             driver.FindElement(By.Id("LoginSubmit")).Click();
             System.Threading.Thread.Sleep(500);
+
+---
+
+# Discussion Questions for the Panel
+
+- How often do your tests run?
+- Who in your organization writes new tests?
+- How do you get your test results?
+- How often do you add or remove tests from the suite?
 
 </textarea>
     <!--<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">-->
