@@ -115,6 +115,33 @@ Talking Points
 - The feature steps are written in a language called Gherkin, which allows for the seperation of how the test behaviour is specified from how its implemented.
 - So the feature file shown in the previous slide captures the behaviour of what we want to test
 - We have 3 implementations - in C#, Python and Ruby - that each test the same feature test but leave the choice of a language up to the tester/programmer.
+
+---
+
+# Cucumber / Gherkin
+
+- Given
+- When
+- Then
+
+???
+
+Given
+- Call your constructors
+- Set up web driver
+- Verify pre-conditions (site is up, database state is as needed)
+
+When
+- Fill in some fields
+- Pick a drop down choice
+- Click a button
+
+Then
+- Verify expected page content
+- Verify expected database content
+- Check an inbox for an email
+- I usually do cleanup here as well.
+
 ---
 
 # Example C# Step File
